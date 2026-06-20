@@ -350,7 +350,7 @@ data "aws_ami" "ecs_optimized_ami" {
 resource "aws_launch_template" "ecs_launch_template" {
   name_prefix   = "ecs-launch-template-"
   image_id      = data.aws_ami.ecs_optimized_ami.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   iam_instance_profile {
     name = aws_iam_instance_profile.ecs-instance-profile.name
@@ -514,7 +514,7 @@ EOF
 
 /* Creating a S3 Bucket for Terraform state file upload. */
 resource "aws_s3_bucket" "bucket_tf_files" {
-  bucket        = "do-not-delete-awsgoat-state-files-${data.aws_caller_identity.current.account_id}"
+  bucket        = "do-not-delete-awsgoat-state-files-module-2-${data.aws_caller_identity.current.account_id}"
   force_destroy = true
   tags = {
     Name        = "Do not delete Bucket"

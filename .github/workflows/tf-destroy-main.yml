@@ -46,7 +46,7 @@ jobs:
     - name: Retrieve tfstate
       run: |
         cd modules/${{ github.event.inputs.module }}
-        aws s3 cp s3://do-not-delete-awsgoat-state-files-${{ env.ACCOUNT_ID }}/terraform.tfstate ./terraform.tfstate
+        aws s3 cp s3://do-not-delete-awsgoat-state-files-${{ github.event.inputs.module }}-${{ env.ACCOUNT_ID }}/terraform.tfstate ./terraform.tfstate
 
     # Initialize a new Terraform working directory
     - name: Terraform Init
