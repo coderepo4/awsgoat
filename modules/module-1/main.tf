@@ -3417,7 +3417,7 @@ resource "aws_s3_object" "upload_temp_object_2" {
 }
 /* Creating a S3 Bucket for Terraform state file upload. */
 resource "aws_s3_bucket" "bucket_tf_files" {
-  bucket        = "do-not-delete-awsgoat-state-files-${data.aws_caller_identity.current.account_id}"
+  bucket        = "do-not-delete-awsgoat-state-files-module-1-${data.aws_caller_identity.current.account_id}"
   force_destroy = true
   tags = {
     Name        = "Do not delete Bucket"
@@ -3598,7 +3598,7 @@ data "aws_ami" "goat_ami" {
 
 resource "aws_instance" "goat_instance" {
   ami                  = data.aws_ami.goat_ami.id
-  instance_type        = "t2.micro"
+  instance_type        = "t3.micro"
   iam_instance_profile = aws_iam_instance_profile.goat_iam_profile.name
   subnet_id            = aws_subnet.goat_subnet.id
   security_groups      = [aws_security_group.goat_sg.id]
